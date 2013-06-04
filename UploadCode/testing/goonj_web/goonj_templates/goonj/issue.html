@@ -1,0 +1,428 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+
+------------------------------
+
+Goonj Project Website
+
+------------------------------
+
+----------------------------------------------------------------------
+
+Website built using: HTML, CSS, Python, Django, Apache Solr, Haystack
+
+----------------------------------------------------------------------
+
+Page details
+=============
+
+Name       : index.html
+Description: Issue front page.
+Version    : 2.0
+Released   : 6 August 2012
+Page width : 980px
+
+=============
+
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<!--
+	
+    Head Start
+    
+-->
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Goonj: Media for Everyone</title>
+
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<!-- CSS -->
+<link href="/static/style.css" rel="stylesheet" type="text/css" media="screen" />
+
+
+<!---- Extra Elements ---->
+
+<link rel='stylesheet' id='fblb-css-css'  href='http://www.gramvaani.org/wp-content/plugins/slider/fblb.css?ver=3.3.1' type='text/css' media='all' />
+
+
+<script>
+function detectmob() { 
+ if( navigator.userAgent.match(/Android/i)
+ || navigator.userAgent.match(/webOS/i)
+ || navigator.userAgent.match(/iPhone/i)
+ || navigator.userAgent.match(/iPad/i)
+ || navigator.userAgent.match(/iPod/i)
+ || navigator.userAgent.match(/BlackBerry/i)
+ || navigator.userAgent.match(/Windows Phone/i)
+ ){
+    return true;
+  }
+ else {
+    return false;
+  }
+}
+</script>
+
+
+</head>
+
+<!--
+	
+    Head End
+    
+-->
+
+
+<!--
+	
+    Body Start
+    
+-->
+
+<body>
+
+<div id="wrapper">
+
+<!--	Page header
+		Includes: Logo, Weblinks (Facebook, LinkedIn and Twitter), Contact no.
+-->
+
+<div id="header">
+
+	<div id="textleft">
+       <a href="https://www.facebook.com/goonj.net?ref=hl"><img src="/static/fb.png" height="32" />  </a>  &nbsp;    <a href="http://www.linkedin.com/company/gram-vaani-community-media?trk=hb_tab_compy_id_2549986"> <img src="/static/linkedin.png" height="32" /> </a> &nbsp; <a href="http://www.gramvaani.org/"><img src="/static/gv.jpg" height="32" />  </a>
+
+	 </div>
+    
+    
+    <div id="textright">
+    	<img src="/static/phone-logo.png"  height="22" />  088-000-97-458
+    </div>
+
+
+</div>
+
+<center> <a href="/goonj/" > <img src="/static/goonj.jpg"  align="absmiddle" height="70" /> </a> </center>
+
+<!--	Page header ends -->
+
+<br /><hr /><hr />
+
+
+<!--	Menu Bar
+		Includes: Home, Topic Channels, Issues, Reports, Search
+-->
+
+<nav id="masternav" class="clearfix">
+
+	<div class="menu-main-container">
+    	<ul id="menu-main" class="sf-menu">
+        	
+            <li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item">
+            	<a href="/goonj/">Home</a>
+            </li>
+
+
+			
+			<li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item">
+            	<a href="#">TOPIC CHANNELS</a>
+			<ul class="sub-menu">
+
+
+
+{% for tc in topic_channel_list %}
+			<li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item">
+                    	<a href="/goonj/topic_channel/{{ tc.topic_channel_id }}/">{{ tc.topic }}</a>
+                    </li>					
+{% endfor %}
+
+				</ul>
+
+<li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item">
+            	<a href="#">LOCATIONS</a>
+			<ul class="sub-menu">
+
+{% for loc in location_list %}
+			<li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item">
+                    	<a href="/goonj/location/{{ loc.id }}/">{{ loc.name }}</a>
+                    </li>					
+{% endfor %}
+
+				</ul>
+
+
+
+			</li>
+
+<!--			<li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item">
+            	<a href="/goonj/all_issues/">ISSUES</a>
+			</li>  -->
+
+		<li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item">
+            	<a href="/goonj/all_stories/">ALL STORIES</a>
+			</li>
+            
+			<li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item">
+            	<a href="/goonj/reports">REPORTS</a>
+			<!--	<ul class="sub-menu">
+					<li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item">
+                    	<a href="http://www.gramvaani.org/wp-content/uploads/2012/07/2012-july-jmr-report.pdf">July</a>
+                    </li>
+					<li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item">
+                    	<a href="http://www.gramvaani.org/wp-content/uploads/2012/07/2012-june-jmr-report.pdf">June</a>
+                    </li>
+					<li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item">
+                    	<a href="http://www.gramvaani.org/wp-content/uploads/2012/05/JMR-Report-May-2012.pdf">May</a>
+                    </li>
+				</ul>	-->
+			</li>
+
+		<!--	<li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item">
+            	<a href="/goonj/top10/">Top 10</a>
+            </li> -->
+           
+  <!--          <li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item">
+            	<a href="/goonj/search/">Search</a>
+            </li>  -->
+		</ul>
+    </div>
+</nav>
+
+<!--	Menu Bar ends -->
+
+<hr /><hr />
+
+
+
+
+
+
+
+
+
+<!--	Story Data
+		Title, metadata, transcript, video and images. 
+-->
+
+
+<div id="top10wrap">
+
+
+<h1>{{ issue.issue_name}} </h1>
+
+	<p>
+
+	{{issue.issue_description}}
+
+	</p>
+	
+
+    <br />
+    
+
+	{% if issue.issue_type == 1 %}
+		<iframe src='http://embed.verite.co/timeline/?source=0AtqNMp2LWKegdGFkN2dZMURTRFhHeEtUN2Zwc1hBQXc&font=Bevan-PotanoSans&maptype=toner&lang=en&height=650' width='100%' height='650' frameborder='0'></iframe>
+	{% elif issue.issue_type == 2 %}
+		<center><img src="/goonj/goonjmedia/{{issue.photo_media}}"/></center>
+	{% elif issue.issue_type == 3%}
+		<center><iframe src="http://106.187.101.30/ushahidi/main.htm" width="430" height="410" scrolling="no" ></iframe></center>
+	{% else %}
+	{% endif %}
+	
+
+
+<!-- <h3>Included Stories</h3> -->
+
+	<div id="storylist">
+    
+   <ul>
+          {% for story in story_list %}
+                <li>
+                <h3><a href="/goonj/story/{{ story.story_id }}/">{{ story.title }}</a></h3>
+
+               <h5> <a href="/goonj/location/{{ story.location.district.id }}/">{{story.location.district}}</a> On {{story.date}}</h5>
+
+                <p>{{story.transcript}}</p>
+
+
+        {% if story.audio %}
+
+
+<div class="xyz" id={{story.audio}}></div>
+
+<!--<p>
+
+ <object id="obj" type="application/x-shockwave-flash" data="/static/player.swf" width="300" height="40">
+     <param name="movie" value="/static/player.swf" />
+     <param name="FlashVars" value="mp3=/goonj/goonjmedia/{{ story.audio }}" />
+</object>
+
+</p>   -->
+
+              
+<script>
+var a  = detectmob();
+if(a)
+{
+	
+	var s1 = '<audio controls="controls"><source src=';
+	var s2 = ' type="audio/ogg" /><source src=';
+	var s3 = ' type="audio/mpeg" /> Your browser does not support the audio element.</audio>';
+	var elem = document.getElementsByClassName("xyz");
+	//alert(elem.innerHTML);
+	//elem.innerHTML = s1;
+	for( var i=0;i < elem.length;i++)
+	{
+		var s = "/media/" + elem[i].id ;
+		elem[i].innerHTML = s1 + s + s2 + s + s3;
+	}
+	
+	//elem[0].innerHTML = s1;
+	//elem.html('s1');
+	//alert(elem.innerHTML);
+	//var elem=document.createElement("audio");
+	//elem.src="/media/{{ story.audio }}";
+	//document.body.appendChild(elem);
+}
+else
+{
+	var s1 = '<p> <object id="obj" type="application/x-shockwave-flash" data="/static/player.swf" width="300" height="40"><param name="movie" value="/static/player.swf" /><param name="FlashVars" value=';
+	var s2 = ' /></object></p>'; 
+	var elem = document.getElementsByClassName("xyz");
+        //alert(elem.innerHTML);
+        //elem.innerHTML = s1;
+        for( var i=0;i < elem.length;i++)
+        {
+                var s = "mp3=/goonj/goonjmedia/" + elem[i].id ;
+                elem[i].innerHTML = s1 + s + s2;
+        }
+
+	//var elem = document.getElementById("one");
+        //alert(elem.innerHTML);
+        //elem.innerHTML = s2;    
+
+        //elem.html('s1');
+	//alert(elem.innerHTML);
+
+}
+</script>
+ 
+
+<!--<div id="test">
+         <audio controls="controls">
+                        <source src="/media/{{ story.audio }}" type="audio/ogg" />
+                        <source src="/media/{{ story.audio }}" type="audio/mpeg" />
+                        Your browser does not support the audio element.
+                </audio>
+</div> -->
+<!--
+<p>
+<embed type="application/x-mplayer2" autostart="false" src="/goonjmedia/{{ story.audio }}" height="40" width="300" >
+</p>
+-->
+<!--
+<p>
+
+<object type="application/x-shockwave-flash" data="/static/player.swf" width="300" height="40">
+     <param name="movie" value="/static/player.swf" />
+     <param name="FlashVars" value="mp3=/goonj/goonjmedia/{{ story.audio }}" />
+</object>
+
+</p>
+
+-->
+     {% endif %}
+
+        </li>
+        <br /> <hr /> <br />
+
+
+
+        {% endfor %}
+
+        </ul>
+ 
+    
+    </div>
+
+
+
+<!--
+	<h3>Issue Status</h3>
+    <br />
+    <p> {{issue.status}} </p>
+
+	<p>
+	<audio controls="controls">
+  		<source src="song.ogg" type="audio/ogg" />
+  		<source src="http://voice.gramvaani.org/fsmedia/recordings/10/9902.mp3" type="audio/mpeg" />
+  		Your browser does not support the audio element.
+	</audio>
+	</p>
+    
+    <p>
+	<video width="320" height="240" controls="controls">
+  		<source src="/static/movie.mp4" type="video/mp4" />
+  		<source src="movie.ogg" type="video/ogg" />
+  		Your browser does not support the video tag.
+	</video>
+	</p>
+    
+    <p>
+	<ul>
+  		<li><img src="/static/pic1.JPG" /></li>
+   		<li><img src="/static/pic2.JPG" /></li>
+  		<li><img src="/static/pic1.JPG" /></li>
+   		<li><img src="/static/pic2.JPG" /></li>
+  	</ul>	
+	</p>
+-->    
+
+</div>
+
+
+
+
+<!--	
+		Footer
+        Contains: About us, Our Team and COntact links
+        Copyright text.
+        At every page end
+-->
+
+
+<div id="footer" class="foot">
+<hr />
+<br /><br />
+
+	<ul>
+		<li><a href="/goonj/about">About Us</a></li>
+		<li><a href="/goonj/team">Our Team</a></li>
+		<li><a href="/goonj/contact">Contact Us</a></li>
+	</ul>
+    <br /><br /><br />
+
+<hr /><br />
+	<p>&copy;2012 Goonj </p>
+
+
+</div>
+		
+</div>
+</body>
+
+<!--
+	
+    Body End
+    
+-->
+
+</html>

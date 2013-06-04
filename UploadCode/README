@@ -1,0 +1,5 @@
+There are two folders in this project and two files.
+
+script.py is the python script used to update the script every half hour. It saves the last date and time of update in the file nfile.
+
+

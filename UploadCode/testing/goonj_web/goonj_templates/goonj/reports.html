@@ -1,0 +1,344 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+
+------------------------------
+
+Goonj Project Website
+
+------------------------------
+
+----------------------------------------------------------------------
+
+Website built using: HTML, CSS, Python, Django, Apache Solr, Haystack
+
+----------------------------------------------------------------------
+
+Page details
+=============
+
+Name       : about.html
+Description: About page.
+Version    : 2.0
+Released   : 6 August 2012
+Page width : 980px
+
+=============
+
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<!--
+	
+    Head Start
+    
+-->
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Goonj: Media for Everyone</title>
+
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<!-- CSS -->
+<link href="/static/style.css" rel="stylesheet" type="text/css" media="screen" />
+
+
+<!---- Extra Elements ---->
+
+<link rel='stylesheet' id='fblb-css-css'  href='http://www.gramvaani.org/wp-content/plugins/slider/fblb.css?ver=3.3.1' type='text/css' media='all' />
+
+
+
+
+
+</head>
+
+<!--
+	
+    Head End
+    
+-->
+
+
+<!--
+	
+    Body Start
+    
+-->
+
+<body>
+
+<div id="wrapper">
+
+<!--	Page header
+		Includes: Logo, Weblinks (Facebook, LinkedIn and Twitter), Contact no.
+-->
+
+<div id="header">
+
+	<div id="textleft">
+        <a href="https://www.facebook.com/goonj.net?ref=hl"><img src="/static/fb.png" height="32" />  </a>  &nbsp;    <a href="http://www.linkedin.com/company/gram-vaani-community-media?trk=hb_tab_compy_id_2549986"> <img src="/static/linkedin.png" height="32" /> </a> &nbsp; <a href="http://www.gramvaani.org/"><img src="/static/gv.jpg" height="32" />  </a>
+	</div>
+    
+    
+    <div id="textright">
+    	<img src="/static/phone-logo.png"  height="22" />  088-000-97-458
+    </div>
+
+
+</div>
+
+<center> <a href="/goonj/" > <img src="/static/goonj.jpg"  align="absmiddle" height="70" /> </a> </center>
+
+<!--	Page header ends -->
+
+<br /><hr /><hr />
+
+
+<!--	Menu Bar
+		Includes: Home, Topic Channels, Issues, Reports, Search
+-->
+
+<nav id="masternav" class="clearfix">
+
+	<div class="menu-main-container">
+    	<ul id="menu-main" class="sf-menu">
+        	
+            <li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item">
+            	<a href="/goonj/">Home</a>
+            </li>
+
+
+			
+			<li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item">
+            	<a href="#">TOPIC CHANNELS</a>
+			<ul class="sub-menu">
+
+
+
+{% for tc in topic_channel_list %}
+			<li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item">
+                    	<a href="/goonj/topic_channel/{{ tc.topic_channel_id }}/">{{ tc.topic }}</a>
+                    </li>					
+{% endfor %}
+
+				</ul>
+
+<li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item">
+                <a href="#">LOCATIONS</a>
+
+
+        <ul>
+                <li>
+
+                        <table>
+
+
+
+                        {% for lvar in bigloclist %}
+
+
+
+                        <tr>
+                                <td><a href="/goonj/location/{{ lvar.loc1.id }}/">{{ lvar.loc1.name }}</a></td>
+                                <td><a href="/goonj/location/{{ lvar.loc2.id }}/">{{ lvar.loc2.name }}</a></td>
+                                <td><a href="/goonj/location/{{ lvar.loc3.id }}/">{{ lvar.loc3.name }}</a></td>
+                        </tr>
+
+                        {% endfor %}
+
+
+
+                        </table>
+
+                </li>
+
+        </ul>
+
+</li>
+
+
+<!--
+			<li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item">
+            	<a href="/goonj/all_issues/">ISSUES</a>
+-->			</li>
+
+		<li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item">
+            	<a href="/goonj/all_stories/">ALL STORIES</a>
+			</li>
+            
+			<li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item">
+            	<a href="/goonj/reports">REPORTS</a>
+			<!--	<ul class="sub-menu">
+					<li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item">
+                    	<a href="http://www.gramvaani.org/wp-content/uploads/2012/07/2012-july-jmr-report.pdf">July</a>
+                    </li>
+					<li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item">
+                    	<a href="http://www.gramvaani.org/wp-content/uploads/2012/07/2012-june-jmr-report.pdf">June</a>
+                    </li>
+					<li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item">
+                    	<a href="http://www.gramvaani.org/wp-content/uploads/2012/05/JMR-Report-May-2012.pdf">May</a>
+                    </li>
+				</ul>  -->
+			</li>
+
+	<!--		<li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item">
+            	<a href="/goonj/top10/">Top 10</a>
+            </li> -->
+<!--           
+            <li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item">
+            	<a href="/goonj/search/">Search</a>
+            </li>  -->
+		</ul>
+    </div>
+</nav>
+
+<!--	Menu Bar ends -->
+
+<hr /><hr />
+
+
+
+
+
+
+
+
+
+
+
+
+<!--	Story Data
+		Title, metadata, transcript, video and images. 
+-->
+
+
+<div id="aboutwrap">
+   
+
+<h1>Reports</h1>
+
+<br />
+<br />
+
+<table>
+<tr> 
+<td><center><h3> Goonj Statistics </h3></center></td>
+<td>&nbsp; &nbsp;</td>
+<td><center><h3> JMR Map </h3></center></td>
+</tr>
+<tr>
+<td>
+
+<iframe src="http://act4d.iitd.ernet.in/jmrstats/cgi-bin/limstats.cgi" scrolling="no" width="430" height="410"></iframe>
+</td>
+<!--
+<h3> Jharkhand Mobile Radio Map </h3>
+-->
+<td>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; </td>
+
+<td>
+        <iframe src="http://106.187.101.30/ushahidi/main.htm" width="430" height="410" scrolling="no" ></iframe>
+</td>
+</tr>
+</table>
+
+<br />
+
+<ul>
+<li><a href="/static/ggss_on_jmr.pdf">Galli Galli Sim Sim activity report, Jharkhand Mobile Radio, June to Oct 2013</a></li>
+<li><a href="/static/migrationCampaign.pdf">Campaign on Rural-Urban Migration on Jharkand Mobile Radio, Feb 2013</a></li>
+<li><a href="/static/goonjPortfolio.pdf">A quick peek into discussions on Goonj, Jharkhand Mobile Radio, Mar 2012 to Feb 2013</a></li>
+<li><a href="http://www.nextbigwhat.com/aaditeshwar-seth-gramvaani-297/">Doers: Bringing Change at the Grassroots with Technology, NEXTBIGWHAT, Feb 11 2013</a></li>
+<li><a href="http://www.medianama.com/2013/02/223-gram-vani-monetisation-partnership/">GramVaani Co-founder on Monetisation, Partnerships, Funding, Marketing and Roadmap, Medianama, Feb 7 2013</a></li>
+<li><a href="http://www.medianama.com/2013/02/223-gram-vaani-mobile-radio/">How GramVaani’s Goonj is Enabling Community Engagement through Mobile Radio,Medianama, Feb 6 2013</a></li>
+
+<li><a href="/static/waterCampaign.pdf">Campaign on water conservation, Jharkhand Mobile Radio, Dec 2012</a></li>
+<li><a href="/static/aidsCampaign.pdf">Campaign on HIV/AIDS, Jharkhand Mobile Radio, Nov 2012</a></li>
+<li><a href="http://www.youtube.com/watch?v=r-OCvdk9tlM">mBillionth QA:Aaditeshwar Seth of Gram Vaani, Youtube, July 22 2012</a></li>
+<li>    <p>
+
+<iframe width="420" height="315" src="http://www.youtube.com/embed/r-OCvdk9tlM" frameborder="0" allowfullscreen></iframe>
+
+	</p></li>
+
+
+<li><a href="http://www.gramvaani.org/wp-content/uploads/2012/07/2012-july-jmr-report.pdf">Activity report, Jharkhand Mobile Radio, July 2012</a></li>
+<li><a href="http://www.gramvaani.org/wp-content/uploads/2012/07/2012-june-jmr-report.pdf">Activity report, Jharkhand Mobile Radio, June 2012</a></li>
+<li><a href="http://www.gramvaani.org/wp-content/uploads/2012/05/JMR-Report-May-2012.pdf">Activity report, Jharkhand Mobile Radio, May 2012</a></li>
+<li><a href="http://www.mydigitalfc.com/opportunities/gram-vaani-iit-delhi-startup-going-places-699">Gram Vaani: IIT-Delhi startup going places, Mydigitalfc, May 14 2012</a></li>
+<li><a href="http://dailypioneer.com/state-editions/ranchi/54398-mobile-phone-rings-for-the-citizen-journalists-of-jkhand.html">Mobile phone rings for the citizen journalists of J’khand, The Pioneer, April 1 2012</a></li>
+<li><a href="http://www.youtube.com/watch?v=uR6PkeH4h9U">Roshan Nair of Gram Vaani -- YSI Pitch Session, Youtube, Feb 27 2012</a>
+<li><p> 
+<iframe width="420" height="315" src="http://www.youtube.com/embed/uR6PkeH4h9U" frameborder="0" allowfullscreen></iframe></p></li>
+
+<li><a href="http://www.thesmartceo.in/starting-up/speak-up-rural-india.html">Speak up, rural india, The Smart CEO, Feb 25 2012</a></li>
+<li><a href="http://www.crikey.com.au/2012/02/17/oursay-how-indias-technology-is-cutting-into-corruption/">OurSay: how India’s technology is cutting into corruption, Crikey, Feb 18 2012</a></li>
+<li><a href="http://www.telegraphindia.com/1110721/jsp/northeast/story_14266388.jsp">Ring in for rural change, toll-free, The Telegraph, July 21 2011</a></li>
+</ul>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--	
+		Footer
+        Contains: About us, Our Team and COntact links
+        Copyright text.
+        At every page end
+-->
+
+
+<div id="footer" class="foot">
+<hr />
+<br /><br />
+
+	<ul>
+		<li><a href="/goonj/about">About Us</a></li>
+		<li><a href="/goonj/team">Our Team</a></li>
+		<li><a href="/goonj/contact">Contact Us</a></li>
+	</ul>
+    <br /><br /><br />
+
+<hr /><br />
+	<p>&copy;2012 Goonj </p>
+
+
+</div>
+		
+</div>
+</body>
+
+<!--
+	
+    Body End
+    
+-->
+
+</html>
