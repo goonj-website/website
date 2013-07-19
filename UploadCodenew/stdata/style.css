@@ -33,7 +33,7 @@ body {
 }
 
 #wrapper {
-	width: 980px;
+	width: 1080px;
 	margin: 20px auto;
 }
 /*	Basic elements	*/
@@ -178,7 +178,7 @@ ul.sf-menu li li.sfHover ul {
 .foot {
 	width: 980px;
 	margin: 20px auto;
-	float: left;
+	float: center;
 }
 
 .foot * {
@@ -188,7 +188,9 @@ ul.sf-menu li li.sfHover ul {
 }
 
 #footer {
-
+	width: 880px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 #footer ul {
@@ -229,6 +231,7 @@ ul.sf-menu li li.sfHover ul {
 
 #topnews {
 	text-align: justify;
+	width: 880px;
 	padding: 20px 10px 25px 10px;
 }
 
@@ -358,7 +361,7 @@ ul.sf-menu li li.sfHover ul {
 .rightblock {
 	
 	float:right;
-	width: 450px;
+	width: 400px;
 	height: 300px;
 	padding-left: 2px;
 }
@@ -431,7 +434,7 @@ ul.sf-menu li li.sfHover ul {
 .leftblock {
 	
 	float:left;
-	width: 450px;
+	width: 400px;
 	height: 300px;
 	padding-right: 2px;
 }
@@ -621,8 +624,9 @@ ul.sf-menu li li.sfHover ul {
 #storywrap img{
 	
 	position:relative;
-	height: 100px;
-	width: 100px;
+	margin-left:5px;
+	margin-right:5px;
+
 }
 
 #storywrap a {
@@ -871,11 +875,15 @@ ul.sf-menu li li.sfHover ul {
 /*	About Wrap	*/
 
 #aboutwrap {
+	width: 880px;
+	margin-left:auto;
+	margin-right:auto;
 	text-align: justify;
 	padding: 20px 10px 20px 10px;
 }
 
 #aboutwrap h1 {
+	width: 900px;
 	font-family:Arial, Helvetica, sans-serif;
 	font-size: 2.9em;
 	font-weight: bold;
@@ -961,8 +969,31 @@ ul.sf-menu li li.sfHover ul {
 }
 
 
+#rightbanner {
+	position: fixed;
+	left: 1120px;
+	bottom: 0px;
+	height: 450px;
+	width: 90px;
+}
+#leftbanner {
+	position: fixed; 
+	bottom:250px;
+	width: 90px;
+}
 
-
+#rightbanner2 {
+	position: fixed;
+	left: 1120px;
+	bottom: -210px;
+	height: 450px;
+	width: 90px;
+}
+#leftbanner2 {
+	position: fixed; 
+	bottom: 40px;
+	width: 90px;
+}
 
 
 
@@ -1109,4 +1140,8 @@ p.speech:after
 	top: 100px;
 	border: 15px solid;
 	border-color: #fff transparent transparent #fff;
+}
+
+#tcphoto{
+	height : 70px;
 }
