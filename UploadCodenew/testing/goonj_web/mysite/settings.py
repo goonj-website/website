@@ -15,12 +15,12 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'goonjDB',                      # Or path to database file if using sqlite3.
         'USER': 'root',                      # Not used with sqlite3.
-        'PASSWORD': 'goonjWebsite',                  # Not used with sqlite3.
+        'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '3306',                      # Set to empty string for default. Not used with sqlite3.
 	'OPTIONS': {
 		'init_command': 'SET storage_engine=INNODB',
-	}
+		}
     }
 }
 
@@ -49,7 +49,7 @@ USE_TZ = False
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = '/home/mridu/testing/goonj_web/goonjMedia/'
+MEDIA_ROOT = 'C:/Users/sherlock/Desktop/GV/UploadCode/testing/goonj_web/goonjMedia'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -61,15 +61,15 @@ MEDIA_URL = '/goonjmedia/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = '/home/mridu/testing/goonj_web/goonjStatic'
+STATIC_ROOT = 'C:/Users/sherlock/Desktop/GV/UploadCode/testing/goonj_web/goonjStatic'
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
-STATIC_URL = '/goonjstatic/'
+STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-	'/home/mridu/stdata',
+	'C:/Users/sherlock/Desktop/GV/UploadCode/stdata',
 	#"/home/mridu/testing/goonjSDir/final",
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
@@ -110,7 +110,7 @@ ROOT_URLCONF = 'mysite.urls'
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
 TEMPLATE_DIRS = (
-	"/home/mridu/testing/goonj_web/goonj_templates",
+	"C:/Users/sherlock/Desktop/GV/UploadCode/testing/goonj_web/goonj_templates",
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -125,7 +125,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
-    'haystack',
+ #   'haystack',
     'goonj',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
@@ -160,12 +160,12 @@ LOGGING = {
     }
 }
 
-HAYSTACK_SITECONF = 'mysite.search_sites'
+#HAYSTACK_SITECONF = 'mysite.search_sites'
 
-HAYSTACK_SEARCH_ENGINE = 'solr'
+#HAYSTACK_SEARCH_ENGINE = 'solr'
 
 #HAYSTACK_XAPIAN_PATH = '/home/mridu/xapian/mysite_index'
-HAYSTACK_SOLR_URL = 'http://0.0.0.0:8983/solr'
+#HAYSTACK_SOLR_URL = 'http://0.0.0.0:8983/solr'
 
 #HAYSTACK_CONNECTIONS = {
 #	'default': {

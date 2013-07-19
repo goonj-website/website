@@ -24,6 +24,7 @@ urlpatterns = patterns('',
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
+  #  url(r'', include('gmapi.urls.media')),
     url(r'^$', 'goonj.views.index'),
     url(r'^about$', 'goonj.views.about'),
     url(r'^contact$', 'goonj.views.contact'),
@@ -40,7 +41,11 @@ urlpatterns = patterns('',
     url(r'^all_issues/', 'goonj.views.all_issues'),
     url(r'^all_stories/', 'goonj.views.all_stories'),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^search/', include('haystack.urls')),
+#    url(r'^search/', include('haystack.urls')),
+    url(r'^events/', 'goonj.views.timelines'), #FOR TESTING TIMELINES ONLY
+    url(r'^campaigns/', 'goonj.views.campaigns'), #FOR TESTING campaigns ONLY
+    url(r'^maps/', 'goonj.views.MAPS'),
+    url(r'^capture/(?P<id>\d+)/$', 'goonj.views.capture'),
 )
 
 #if settings.ENVIRONMENT==settings.ENV_DEVELOPMENT:
