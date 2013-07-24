@@ -117,10 +117,10 @@ class Story(models.Model):
         return self.title   
 
 class StoryTcRelation(models.Model):
-  #  stc_id = models.AutoField(primary_key= True)
+    stc_id = models.IntegerField(primary_key= True)
     story = models.ForeignKey(Story)
     topic_channel = models.ForeignKey(TopicChannel)
-    unique_together = (("story","topic_channel"),)
+    unique_together = (("story","topic_channel"))
 
 class StoryCpartRelation(models.Model):
     scp_id = models.IntegerField(primary_key= True)
