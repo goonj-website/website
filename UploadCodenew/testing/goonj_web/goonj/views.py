@@ -77,7 +77,18 @@ def timelines(request):     #FOR TESTING ONLY
     publish_dates = []
     events = Timeline.objects.all()
     topic_channel_list = TopicChannel.objects.all()
-    #location_list = Location.objects.all()
+    entries = []
+    ctr = 1
+    while ctr < 9:
+        cult2 = []
+        cult = StoryTcRelation.objects.filter(topic_channel_id = ctr)
+        for c in cult:
+            if c.story.date.date() == now.date():
+                cult2.append(c)
+        cult = len(cult2)
+        entries.append(cult)
+        ctr = ctr + 1
+    entries = zip(topic_channel_list,entries)
     location_list = Loc_district.objects.exclude(name='Not Known').order_by('name')
     location_list_1 = location_list[0:8]
     location_list_2 = location_list[8:16]
@@ -96,7 +107,7 @@ def timelines(request):     #FOR TESTING ONLY
         for story in story_list:
             dates.append(story.date)
         publish_dates.append(max(dates))
-    return render_to_response('goonj/events.html', {'topic_channel_list' : topic_channel_list, 'location_list': location_list,'location_list_1': location_list_1,'location_list_2': location_list_2,'location_list_3': location_list_3,'bigloclist': bigloclist,'events' : events, 'stories_list' :stories, 'publish_dates' : publish_dates, 'ind1c' :ind1c,'ind2c' :ind2c,'ind3c' :ind3c,'ind4c' :ind4c, 'networkc' : nsc,})
+    return render_to_response('goonj/events.html', {'topic_channel_list' : topic_channel_list, 'location_list': location_list,'location_list_1': location_list_1,'location_list_2': location_list_2,'location_list_3': location_list_3,'bigloclist': bigloclist,'events' : events, 'stories_list' :stories, 'publish_dates' : publish_dates, 'ind1c' :ind1c,'ind2c' :ind2c,'ind3c' :ind3c,'ind4c' :ind4c, 'networkc' : nsc, 'entries' : entries})
     
 def campaigns(request):
     (ind1,ind2,ind3,ind4,ns) = 0,0,0,0,0
@@ -142,6 +153,25 @@ def campaigns(request):
     stories = []
     publish_dates = []
     campaigns = Campaigns.objects.all()
+    topic_channel_list = TopicChannel.objects.all()
+    entries = []
+    ctr = 1
+    while ctr < 9:
+        cult2 = []
+        cult = StoryTcRelation.objects.filter(topic_channel_id = ctr)
+        for c in cult:
+            if c.story.date.date() == now.date():
+                cult2.append(c)
+        cult = len(cult2)
+        entries.append(cult)
+        ctr = ctr + 1
+    entries = zip(topic_channel_list,entries)
+    #location_list = Location.objects.all()
+    location_list = Loc_district.objects.exclude(name='Not Known').order_by('name')
+    location_list_1 = location_list[0:8]
+    location_list_2 = location_list[8:16]
+    location_list_3 = location_list[16:]
+    bigloclist = [{'loc1': t[0], 'loc2': t[1], 'loc3':t[2]} for t in zip(location_list_1, location_list_2, location_list_3)]
     for c in campaigns:
         story_ids = CampaignStoryRelation.objects.filter(campaign_id = c.c_id) #Returns related story ids
         list_of_ids = []
@@ -154,7 +184,7 @@ def campaigns(request):
         for story in story_list:
             dates.append(story.date)
         publish_dates.append(max(dates))    
-    return render_to_response('goonj/campaigns.html', {'campaigns' : campaigns, 'stories_list' : stories, 'publish_dates' : publish_dates, 'ind1c' :ind1c,'ind2c' :ind2c,'ind3c' :ind3c,'ind4c' :ind4c, 'networkc' : nsc})
+    return render_to_response('goonj/campaigns.html', {'topic_channel_list' : topic_channel_list, 'location_list': location_list,'location_list_1': location_list_1,'location_list_2': location_list_2,'location_list_3': location_list_3,'bigloclist': bigloclist,'campaigns' : campaigns, 'stories_list' : stories, 'publish_dates' : publish_dates, 'ind1c' :ind1c,'ind2c' :ind2c,'ind3c' :ind3c,'ind4c' :ind4c, 'networkc' : nsc, 'entries' : entries}) 
 
 
 #class MapForm(forms.Form):
@@ -233,7 +263,18 @@ def index(request):
     lsl = Story.objects.all().order_by('-date')[:13]
     top_story_list = Story.objects.all().order_by('-views_count')[:5]
     topic_channel_list = TopicChannel.objects.all()
-    #location_list = Location.objects.all()
+    entries = []
+    ctr = 1
+    while ctr < 9:
+        cult2 = []
+        cult = StoryTcRelation.objects.filter(topic_channel_id = ctr)
+        for c in cult:
+            if c.story.date.date() == now.date():
+                cult2.append(c)
+        cult = len(cult2)
+        entries.append(cult)
+        ctr = ctr + 1
+    entries = zip(topic_channel_list,entries)
     location_list = Loc_district.objects.exclude(name='Not Known').order_by('name')
     location_list_1 = location_list[0:8]
     location_list_2 = location_list[8:16]
@@ -243,7 +284,7 @@ def index(request):
     for st in lsl: 
         #if (st.top_story != True):
             other9.append(st)
-    return render_to_response('goonj/index (copy).html', {'l0': other9[1],'l1': other9[2],'l2': other9[3],'l3': other9[4],'l4': other9[5],'l5': other9[6],'l6': other9[7],'l7': other9[8],'l8': other9[9],'l9': other9[10],'l10': other9[11],'l11': other9[12],'top_story_list' : top_story_list, 'topic_channel_list' : topic_channel_list, 'location_list_1': location_list_1,'location_list_2': location_list_2,'location_list_3': location_list_3,'bigloclist': bigloclist,'crep0' : other9[1].community_rep.all(), 'crep1' : other9[2].community_rep.all(), 'crep2' : other9[3].community_rep.all(), 'crep3' : other9[4].community_rep.all(), 'crep4' : other9[5].community_rep.all(), 'crep5' : other9[6].community_rep.all(), 'crep6' : other9[7].community_rep.all(), 'crep7' : other9[8].community_rep.all(), 'crep8' : other9[9].community_rep.all(), 'crep9' : other9[10].community_rep.all(),'crep10' : other9[11].community_rep.all(),'crep11' : other9[12].community_rep.all(),'ts': other9[0], 'crepTS' : other9[0].community_rep.all(),'ind1c' :ind1c,'ind2c' :ind2c,'ind3c' :ind3c,'ind4c' :ind4c, 'networkc' : nsc})   
+    return render_to_response('goonj/index (copy).html', {'l0': other9[1],'l1': other9[2],'l2': other9[3],'l3': other9[4],'l4': other9[5],'l5': other9[6],'l6': other9[7],'l7': other9[8],'l8': other9[9],'l9': other9[10],'l10': other9[11],'l11': other9[12],'top_story_list' : top_story_list, 'topic_channel_list' : topic_channel_list, 'location_list_1': location_list_1,'location_list_2': location_list_2,'location_list_3': location_list_3,'bigloclist': bigloclist,'crep0' : other9[1].community_rep.all(), 'crep1' : other9[2].community_rep.all(), 'crep2' : other9[3].community_rep.all(), 'crep3' : other9[4].community_rep.all(), 'crep4' : other9[5].community_rep.all(), 'crep5' : other9[6].community_rep.all(), 'crep6' : other9[7].community_rep.all(), 'crep7' : other9[8].community_rep.all(), 'crep8' : other9[9].community_rep.all(), 'crep9' : other9[10].community_rep.all(),'crep10' : other9[11].community_rep.all(),'crep11' : other9[12].community_rep.all(),'ts': other9[0], 'crepTS' : other9[0].community_rep.all(),'ind1c' :ind1c,'ind2c' :ind2c,'ind3c' :ind3c,'ind4c' :ind4c, 'networkc' : nsc, 'entries' : entries})   
 
 def about(request):
     (ind1,ind2,ind3,ind4,ns) = 0,0,0,0,0
@@ -287,13 +328,26 @@ def about(request):
     if length > 3:
         ind4c = ClickCount.objects.get(adv_type_id = independent[3].id)
     #location_list = Location.objects.all()
+    topic_channel_list = TopicChannel.objects.all()
+    entries = []
+    ctr = 1
+    while ctr < 9:
+        cult2 = []
+        cult = StoryTcRelation.objects.filter(topic_channel_id = ctr)
+        for c in cult:
+            if c.story.date.date() == now.date():
+                cult2.append(c)
+        cult = len(cult2)
+        entries.append(cult)
+        ctr = ctr + 1
+    entries = zip(topic_channel_list,entries)
     location_list = Loc_district.objects.exclude(name='Not Known').order_by('name')
     location_list_1 = location_list[0:8]
     location_list_2 = location_list[8:16]
     location_list_3 = location_list[16:]
     bigloclist = [{'loc1': t[0], 'loc2': t[1], 'loc3':t[2]} for t in zip(location_list_1, location_list_2, location_list_3)]
 
-    return render_to_response('goonj/about.html', {'topic_channel_list' : topic_channel_list, 'location_list': location_list,'location_list_1': location_list_1,'location_list_2': location_list_2,'location_list_3': location_list_3,'bigloclist': bigloclist, 'ind1c' :ind1c,'ind2c' :ind2c,'ind3c' :ind3c,'ind4c' :ind4c, 'networkc' : nsc})
+    return render_to_response('goonj/about.html', {'topic_channel_list' : topic_channel_list, 'location_list': location_list,'location_list_1': location_list_1,'location_list_2': location_list_2,'location_list_3': location_list_3,'bigloclist': bigloclist, 'ind1c' :ind1c,'ind2c' :ind2c,'ind3c' :ind3c,'ind4c' :ind4c, 'networkc' : nsc, 'entries' : entries}) 
 
 def contact(request):
     (ind1,ind2,ind3,ind4,ns) = 0,0,0,0,0
@@ -337,6 +391,18 @@ def contact(request):
     if length > 3:
         ind4c = ClickCount.objects.get(adv_type_id = independent[3].id)
     topic_channel_list = TopicChannel.objects.all()
+    entries = []
+    ctr = 1
+    while ctr < 9:
+        cult2 = []
+        cult = StoryTcRelation.objects.filter(topic_channel_id = ctr)
+        for c in cult:
+            if c.story.date.date() == now.date():
+                cult2.append(c)
+        cult = len(cult2)
+        entries.append(cult)
+        ctr = ctr + 1
+    entries = zip(topic_channel_list,entries)
     #location_list = Location.objects.all()
     location_list = Loc_district.objects.exclude(name='Not Known').order_by('name')
     location_list_1 = location_list[0:8]
@@ -344,7 +410,7 @@ def contact(request):
     location_list_3 = location_list[16:]
     bigloclist = [{'loc1': t[0], 'loc2': t[1], 'loc3':t[2]} for t in zip(location_list_1, location_list_2, location_list_3)]
 
-    return render_to_response('goonj/contact.html', {'topic_channel_list' : topic_channel_list, 'location_list': location_list,'location_list_1': location_list_1,'location_list_2': location_list_2,'location_list_3': location_list_3,'bigloclist': bigloclist,'ind1c' :ind1c,'ind2c' :ind2c,'ind3c' :ind3c,'ind4c' :ind4c, 'networkc' : nsc})
+    return render_to_response('goonj/contact.html', {'topic_channel_list' : topic_channel_list, 'location_list': location_list,'location_list_1': location_list_1,'location_list_2': location_list_2,'location_list_3': location_list_3,'bigloclist': bigloclist,'ind1c' :ind1c,'ind2c' :ind2c,'ind3c' :ind3c,'ind4c' :ind4c, 'networkc' : nsc, 'entries' : entries}) 
 
 def team(request):
     (ind1,ind2,ind3,ind4,ns) = 0,0,0,0,0
@@ -388,16 +454,40 @@ def team(request):
     if length > 3:
         ind4c = ClickCount.objects.get(adv_type_id = independent[3].id)
     topic_channel_list = TopicChannel.objects.all()
+    entries = []
+    ctr = 1
+    while ctr < 9:
+        cult2 = []
+        cult = StoryTcRelation.objects.filter(topic_channel_id = ctr)
+        for c in cult:
+            if c.story.date.date() == now.date():
+                cult2.append(c)
+        cult = len(cult2)
+        entries.append(cult)
+        ctr = ctr + 1
+    entries = zip(topic_channel_list,entries)
     #location_list = Location.objects.all()
     location_list = Loc_district.objects.exclude(name='Not Known').order_by('name')
     location_list_1 = location_list[0:8]
     location_list_2 = location_list[8:16]
     location_list_3 = location_list[16:]
     bigloclist = [{'loc1': t[0], 'loc2': t[1], 'loc3':t[2]} for t in zip(location_list_1, location_list_2, location_list_3)]
-    return render_to_response('goonj/team.html', {'topic_channel_list' : topic_channel_list, 'location_list': location_list,'location_list_1': location_list_1,'location_list_2': location_list_2,'location_list_3': location_list_3,'bigloclist': bigloclist,'ind1c' :ind1c,'ind2c' :ind2c,'ind3c' :ind3c,'ind4c' :ind4c, 'networkc' : nsc})
+    return render_to_response('goonj/team.html', {'topic_channel_list' : topic_channel_list, 'location_list': location_list,'location_list_1': location_list_1,'location_list_2': location_list_2,'location_list_3': location_list_3,'bigloclist': bigloclist,'ind1c' :ind1c,'ind2c' :ind2c,'ind3c' :ind3c,'ind4c' :ind4c, 'networkc' : nsc, 'entries' : entries}) 
 
 def reports(request):
     topic_channel_list = TopicChannel.objects.all()
+    entries = []
+    ctr = 1
+    while ctr < 9:
+        cult2 = []
+        cult = StoryTcRelation.objects.filter(topic_channel_id = ctr)
+        for c in cult:
+            if c.story.date.date() == now.date():
+                cult2.append(c)
+        cult = len(cult2)
+        entries.append(cult)
+        ctr = ctr + 1
+    entries = zip(topic_channel_list,entries)
     #location_list = Location.objects.all()
     location_list = Loc_district.objects.exclude(name='Not Known').order_by('name')
     location_list_1 = location_list[0:8]
@@ -444,7 +534,7 @@ def reports(request):
         ind3c = ClickCount.objects.get(adv_type_id = independent[2].id)
     if length > 3:
         ind4c = ClickCount.objects.get(adv_type_id = independent[3].id)
-    return render_to_response('goonj/reports.html', {'topic_channel_list' : topic_channel_list, 'location_list': location_list,'location_list_1': location_list_1,'location_list_2': location_list_2,'location_list_3': location_list_3,'bigloclist': bigloclist, 'ind1c' :ind1c,'ind2c' :ind2c,'ind3c' :ind3c,'ind4c' :ind4c, 'networkc' : nsc})
+    return render_to_response('goonj/reports.html', {'topic_channel_list' : topic_channel_list, 'location_list': location_list,'location_list_1': location_list_1,'location_list_2': location_list_2,'location_list_3': location_list_3,'bigloclist': bigloclist, 'ind1c' :ind1c,'ind2c' :ind2c,'ind3c' :ind3c,'ind4c' :ind4c, 'networkc' : nsc, 'entries' : entries}) 
     
 def govt_dept(request,gd_id):
     try:
@@ -453,6 +543,18 @@ def govt_dept(request,gd_id):
         raise Http404
     else:
         topic_channel_list = TopicChannel.objects.all()
+        entries = []
+        ctr = 1
+        while ctr < 9:
+            cult2 = []
+            cult = StoryTcRelation.objects.filter(topic_channel_id = ctr)
+            for c in cult:
+                if c.story.date.date() == now.date():
+                    cult2.append(c)
+            cult = len(cult2)
+            entries.append(cult)
+            ctr = ctr + 1
+        entries = zip(topic_channel_list,entries)
         #location_list = Location.objects.all()
         location_list = Loc_district.objects.exclude(name='Not Known').order_by('name')
         location_list_1 = location_list[0:8]
@@ -499,7 +601,7 @@ def govt_dept(request,gd_id):
             ind3c = ClickCount.objects.get(adv_type_id = independent[2].id)
         if length > 3:
             ind4c = ClickCount.objects.get(adv_type_id = independent[3].id)
-        return render_to_response('goonj/gd.html', {'gd' : gdept, 'topic_channel_list' : topic_channel_list, 'location_list': location_list,'location_list_1': location_list_1,'location_list_2': location_list_2,'location_list_3': location_list_3,'bigloclist': bigloclist,'ind1c' :ind1c,'ind2c' :ind2c,'ind3c' :ind3c,'ind4c' :ind4c, 'networkc' : nsc})
+        return render_to_response('goonj/gd.html', {'gd' : gdept, 'topic_channel_list' : topic_channel_list, 'location_list': location_list,'location_list_1': location_list_1,'location_list_2': location_list_2,'location_list_3': location_list_3,'bigloclist': bigloclist,'ind1c' :ind1c,'ind2c' :ind2c,'ind3c' :ind3c,'ind4c' :ind4c, 'networkc' : nsc, 'entries' : entries}) 
 
 def topic_channel(request,topic_channel_id):
     try:
@@ -554,6 +656,18 @@ def topic_channel(request,topic_channel_id):
             imp.save()
             imp = ClickCount.objects.get(adv_type_id = cs[0].id)
         topic_channel_list = TopicChannel.objects.all()
+        entries = []
+        ctr = 1
+        while ctr < 9:
+            cult2 = []
+            cult = StoryTcRelation.objects.filter(topic_channel_id = ctr)
+            for c in cult:
+                if c.story.date.date() == now.date():
+                    cult2.append(c)
+            cult = len(cult2)
+            entries.append(cult)
+            ctr = ctr + 1
+        entries = zip(topic_channel_list,entries)
         #location_list = Location.objects.all()
         location_list = Loc_district.objects.exclude(name='Not Known').order_by('name')
         location_list_1 = location_list[0:8]
@@ -569,7 +683,7 @@ def topic_channel(request,topic_channel_id):
             stories = paginator.page(1)
         except EmptyPage:
             stories = paginator.page(paginator.num_pages)
-        return render_to_response('goonj/topic_channel.html', { 'channel' : imp , 'tc' : topicc, 'story_list' : stories, 'topic_channel_list' : topic_channel_list, 'location_list': location_list,'location_list_1': location_list_1,'location_list_2': location_list_2,'location_list_3': location_list_3,'bigloclist': bigloclist, 'ind1c' :ind1c,'ind2c' :ind2c,'ind3c' :ind3c,'ind4c' :ind4c, 'networkc' : nsc})
+        return render_to_response('goonj/topic_channel.html', { 'channel' : imp , 'tc' : topicc, 'story_list' : stories, 'topic_channel_list' : topic_channel_list, 'location_list': location_list,'location_list_1': location_list_1,'location_list_2': location_list_2,'location_list_3': location_list_3,'bigloclist': bigloclist, 'ind1c' :ind1c,'ind2c' :ind2c,'ind3c' :ind3c,'ind4c' :ind4c, 'networkc' : nsc, 'entries' : entries}) 
     
 def channel_partner(request,channel_partner_id):
     try:
@@ -578,6 +692,18 @@ def channel_partner(request,channel_partner_id):
         raise Http404
     else:
         topic_channel_list = TopicChannel.objects.all()
+        entries = []
+        ctr = 1
+        while ctr < 9:
+            cult2 = []
+            cult = StoryTcRelation.objects.filter(topic_channel_id = ctr)
+            for c in cult:
+                if c.story.date.date() == now.date():
+                    cult2.append(c)
+            cult = len(cult2)
+            entries.append(cult)
+            ctr = ctr + 1
+        entries = zip(topic_channel_list,entries)
         #location_list = Location.objects.all()
         location_list = Loc_district.objects.exclude(name='Not Known').order_by('name')
         location_list_1 = location_list[0:8]
@@ -624,7 +750,7 @@ def channel_partner(request,channel_partner_id):
             ind3c = ClickCount.objects.get(adv_type_id = independent[2].id)
         if length > 3:
             ind4c = ClickCount.objects.get(adv_type_id = independent[3].id)
-        return render_to_response('goonj/cp.html', {'cp' : channelp, 'topic_channel_list' : topic_channel_list, 'location_list': location_list,'location_list_1': location_list_1,'location_list_2': location_list_2,'location_list_3': location_list_3,'bigloclist': bigloclist, 'ind1c' :ind1c,'ind2c' :ind2c,'ind3c' :ind3c,'ind4c' :ind4c, 'networkc' : nsc})
+        return render_to_response('goonj/cp.html', {'cp' : channelp, 'topic_channel_list' : topic_channel_list, 'location_list': location_list,'location_list_1': location_list_1,'location_list_2': location_list_2,'location_list_3': location_list_3,'bigloclist': bigloclist, 'ind1c' :ind1c,'ind2c' :ind2c,'ind3c' :ind3c,'ind4c' :ind4c, 'networkc' : nsc, 'entries' : entries}) 
 
 def community_rep(request,community_rep_id):
     try:
@@ -673,13 +799,25 @@ def community_rep(request,community_rep_id):
         if length > 3:
             ind4c = ClickCount.objects.get(adv_type_id = independent[3].id)
         topic_channel_list = TopicChannel.objects.all()
+        entries = []
+        ctr = 1
+        while ctr < 9:
+            cult2 = []
+            cult = StoryTcRelation.objects.filter(topic_channel_id = ctr)
+            for c in cult:
+                if c.story.date.date() == now.date():
+                    cult2.append(c)
+            cult = len(cult2)
+            entries.append(cult)
+            ctr = ctr + 1
+        entries = zip(topic_channel_list,entries)
         #location_list = Location.objects.all()
         location_list = Loc_district.objects.exclude(name='Not Known').order_by('name')
         location_list_1 = location_list[0:8]
         location_list_2 = location_list[8:16]
         location_list_3 = location_list[16:]
         bigloclist = [{'loc1': t[0], 'loc2': t[1], 'loc3':t[2]} for t in zip(location_list_1, location_list_2, location_list_3)]
-        return render_to_response('goonj/crep.html', {'crep' : communityr,'topic_channel_list' : topic_channel_list, 'location_list': location_list,'location_list_1': location_list_1,'location_list_2': location_list_2,'location_list_3': location_list_3,'bigloclist': bigloclist,'ind1c' :ind1c,'ind2c' :ind2c,'ind3c' :ind3c,'ind4c' :ind4c, 'networkc' : nsc})
+        return render_to_response('goonj/crep.html', {'crep' : communityr,'topic_channel_list' : topic_channel_list, 'location_list': location_list,'location_list_1': location_list_1,'location_list_2': location_list_2,'location_list_3': location_list_3,'bigloclist': bigloclist,'ind1c' :ind1c,'ind2c' :ind2c,'ind3c' :ind3c,'ind4c' :ind4c, 'networkc' : nsc, 'entries' : entries}) 
 
 
 def story(request, story_id):
@@ -743,15 +881,41 @@ def story(request, story_id):
                 imp.append(ClickCount.objects.get(adv_type_id = cs.id))
 
         topic_channel_list = TopicChannel.objects.all()
+        entries = []
+        ctr = 1
+        while ctr < 9:
+            cult2 = []
+            cult = StoryTcRelation.objects.filter(topic_channel_id = ctr)
+            for c in cult:
+                if c.story.date.date() == now.date():
+                    cult2.append(c)
+            cult = len(cult2)
+            entries.append(cult)
+            ctr = ctr + 1
+        entries = zip(topic_channel_list,entries)
         now = datetime.datetime.now()
+        ctr = 1
+        lentries = []
+        while ctr < 24:
+            locentry = []
+            dist = Story.objects.filter(location__district_id = ctr)
+            for t in dist:
+                if (t.date.date() == now.date()):
+                    locentry.append(t)
+            lentry = len(locentry)
+            lentries.append(lentry)
+            ctr = ctr + 1
+        l1 = lentries[0:8]
+        l2 = lentries[8:16]
+        l3 = lentries[16:]
         #location_list = Location.objects.all()
-        location_list = Loc_district.objects.exclude(name='Not Known').order_by('name')
+        location_list = Loc_district.objects.all()
         location_list_1 = location_list[0:8]
         location_list_2 = location_list[8:16]
         location_list_3 = location_list[16:]
-        bigloclist = [{'loc1': t[0], 'loc2': t[1], 'loc3':t[2]} for t in zip(location_list_1, location_list_2, location_list_3)]
+        bigloclist = [{'loc1': t[0], 'loc2': t[1], 'loc3':t[2], 'ctr1': t[3], 'ctr2': t[4], 'ctr3': t[5]} for t in zip(location_list_1, location_list_2, location_list_3,l1,l2,l3)]
         loc = s.location.district
-        return render_to_response('goonj/story.html', {'channels' : imp,'story' : s, 'loc': loc, 'crep' : s.community_rep.all(), 'now': now,'photoList': s.photo_id.all(),'topic_channel_list' : topic_channel_list, 'location_list': location_list,'location_list_1': location_list_1,'location_list_2': location_list_2,'location_list_3': location_list_3,'bigloclist': bigloclist,'ind1c' :ind1c,'ind2c' :ind2c,'ind3c' :ind3c,'ind4c' :ind4c, 'networkc' : nsc})
+        return render_to_response('goonj/story.html', {'channels' : imp,'story' : s, 'loc': loc, 'crep' : s.community_rep.all(), 'now': now,'photoList': s.photo_id.all(),'topic_channel_list' : topic_channel_list, 'location_list': location_list,'location_list_1': location_list_1,'location_list_2': location_list_2,'location_list_3': location_list_3,'bigloclist': bigloclist,'ind1c' :ind1c,'ind2c' :ind2c,'ind3c' :ind3c,'ind4c' :ind4c, 'networkc' : nsc, 'entries' : entries, 'lentry' : lentries}) 
 
 def issue(request, issue_id):
     try:
@@ -800,13 +964,25 @@ def issue(request, issue_id):
         if length > 3:
             ind4c = ClickCount.objects.get(adv_type_id = independent[3].id)
         topic_channel_list = TopicChannel.objects.all()
+        entries = []
+        ctr = 1
+        while ctr < 9:
+            cult2 = []
+            cult = StoryTcRelation.objects.filter(topic_channel_id = ctr)
+            for c in cult:
+                if c.story.date.date() == now.date():
+                    cult2.append(c)
+            cult = len(cult2)
+            entries.append(cult)
+            ctr = ctr + 1
+        entries = zip(topic_channel_list,entries)
         #location_list = Location.objects.all()
         location_list = Loc_district.objects.exclude(name='Not Known').order_by('name')
         location_list_1 = location_list[0:8]
         location_list_2 = location_list[8:16]
         location_list_3 = location_list[16:]
         bigloclist = [{'loc1': t[0], 'loc2': t[1], 'loc3':t[2]} for t in zip(location_list_1, location_list_2, location_list_3)]
-        return render_to_response('goonj/issue.html', {'issue' : i, 'story_list' : i.story_id.all().order_by('-date'),'topic_channel_list' : topic_channel_list, 'location_list': location_list,'location_list_1': location_list_1,'location_list_2': location_list_2,'location_list_3': location_list_3,'bigloclist': bigloclist, 'ind1c' :ind1c,'ind2c' :ind2c,'ind3c' :ind3c,'ind4c' :ind4c, 'networkc' : nsc})
+        return render_to_response('goonj/issue.html', {'issue' : i, 'story_list' : i.story_id.all().order_by('-date'),'topic_channel_list' : topic_channel_list, 'location_list': location_list,'location_list_1': location_list_1,'location_list_2': location_list_2,'location_list_3': location_list_3,'bigloclist': bigloclist, 'ind1c' :ind1c,'ind2c' :ind2c,'ind3c' :ind3c,'ind4c' :ind4c, 'networkc' : nsc, 'entries' : entries}) 
 
 def location(request, location_id):
     try:
@@ -855,6 +1031,18 @@ def location(request, location_id):
         if length > 3:
             ind4c = ClickCount.objects.get(adv_type_id = independent[3].id)
         topic_channel_list = TopicChannel.objects.all()
+        entries = []
+        ctr = 1
+        while ctr < 9:
+            cult2 = []
+            cult = StoryTcRelation.objects.filter(topic_channel_id = ctr)
+            for c in cult:
+                if c.story.date.date() == now.date():
+                    cult2.append(c)
+            cult = len(cult2)
+            entries.append(cult)
+            ctr = ctr + 1
+        entries = zip(topic_channel_list,entries)
         #location_list = Location.objects.all()
         location_list = Loc_district.objects.exclude(name='Not Known').order_by('name')
         location_list_1 = location_list[0:8]
@@ -874,12 +1062,24 @@ def location(request, location_id):
             stories = paginator.page(1)
         except EmptyPage:
             stories = paginator.page(paginator.num_pages)
-        return render_to_response('goonj/location.html', {'loc' : l,'topic_channel_list' : topic_channel_list, 'location_list': location_list, 'story_list' : stories,'location_list_1': location_list_1,'location_list_2': location_list_2,'location_list_3': location_list_3,'bigloclist': bigloclist, 'ind1c' :ind1c,'ind2c' :ind2c,'ind3c' :ind3c,'ind4c' :ind4c, 'networkc' : nsc})
+        return render_to_response('goonj/location.html', {'loc' : l,'topic_channel_list' : topic_channel_list, 'location_list': location_list, 'story_list' : stories,'location_list_1': location_list_1,'location_list_2': location_list_2,'location_list_3': location_list_3,'bigloclist': bigloclist, 'ind1c' :ind1c,'ind2c' :ind2c,'ind3c' :ind3c,'ind4c' :ind4c, 'networkc' : nsc, 'entries' : entries}) 
         
 
 def top10(request):
     top_story_list = Story.objects.all().order_by('-views_count')[:10]
     topic_channel_list = TopicChannel.objects.all()
+    entries = []
+    ctr = 1
+    while ctr < 9:
+        cult2 = []
+        cult = StoryTcRelation.objects.filter(topic_channel_id = ctr)
+        for c in cult:
+            if c.story.date.date() == now.date():
+                cult2.append(c)
+        cult = len(cult2)
+        entries.append(cult)
+        ctr = ctr + 1
+    entries = zip(topic_channel_list,entries)
     (ind1,ind2,ind3,ind4,ns) = 0,0,0,0,0
     (ind1c,ind2c,ind3c,ind4c,nsc) = 0,0,0,0,0
     network = AdvertiserType.objects.filter(Q(ad_type ="NETWORK_SPONSOR"), Q(end_date__gt = now)| Q(end_date__isnull=True))
@@ -921,10 +1121,22 @@ def top10(request):
     if length > 3:
         ind4c = ClickCount.objects.get(adv_type_id = independent[3].id)
     location_list = Location.objects.all()
-    return render_to_response('goonj/most_popular.html', {'top_story_list': top_story_list,'topic_channel_list' : topic_channel_list, 'location_list': location_list, 'ind1c' :ind1c,'ind2c' :ind2c,'ind3c' :ind3c,'ind4c' :ind4c, 'networkc' : nsc}) 
+    return render_to_response('goonj/most_popular.html', {'top_story_list': top_story_list,'topic_channel_list' : topic_channel_list, 'location_list': location_list, 'ind1c' :ind1c,'ind2c' :ind2c,'ind3c' :ind3c,'ind4c' :ind4c, 'networkc' : nsc, 'entries' : entries})  
 
 def search(request):
     topic_channel_list = TopicChannel.objects.all()
+    entries = []
+    ctr = 1
+    while ctr < 9:
+        cult2 = []
+        cult = StoryTcRelation.objects.filter(topic_channel_id = ctr)
+        for c in cult:
+            if c.story.date.date() == now.date():
+                cult2.append(c)
+        cult = len(cult2)
+        entries.append(cult)
+        ctr = ctr + 1
+    entries = zip(topic_channel_list,entries)
     (ind1,ind2,ind3,ind4,ns) = 0,0,0,0,0
     (ind1c,ind2c,ind3c,ind4c,nsc) = 0,0,0,0,0
     network = AdvertiserType.objects.filter(Q(ad_type ="NETWORK_SPONSOR"), Q(end_date__gt = now)| Q(end_date__isnull=True))
@@ -966,10 +1178,22 @@ def search(request):
     if length > 3:
         ind4c = ClickCount.objects.get(adv_type_id = independent[3].id)
     location_list = Location.objects.all()
-    return render_to_response('search/search.html',{'topic_channel_list' : topic_channel_list, 'location_list': location_list, 'ind1c' :ind1c,'ind2c' :ind2c,'ind3c' :ind3c,'ind4c' :ind4c, 'networkc' : nsc})
+    return render_to_response('search/search.html',{'topic_channel_list' : topic_channel_list, 'location_list': location_list, 'ind1c' :ind1c,'ind2c' :ind2c,'ind3c' :ind3c,'ind4c' :ind4c, 'networkc' : nsc, 'entries' : entries}) 
 
 def all_stories(request):
     topic_channel_list = TopicChannel.objects.all()
+    entries = []
+    ctr = 1
+    while ctr < 9:
+        cult2 = []
+        cult = StoryTcRelation.objects.filter(topic_channel_id = ctr)
+        for c in cult:
+            if c.story.date.date() == now.date():
+                cult2.append(c)
+        cult = len(cult2)
+        entries.append(cult)
+        ctr = ctr + 1
+    entries = zip(topic_channel_list,entries)
     #location_list = Location.objects.all()
     location_list = Loc_district.objects.exclude(name='Not Known').order_by('name')
     location_list_1 = location_list[0:8]
@@ -1025,10 +1249,22 @@ def all_stories(request):
         stories = paginator.page(1)
     except EmptyPage:
         stories = paginator.page(paginator.num_pages)
-    return render_to_response('goonj/all_stories.html',{'topic_channel_list' : topic_channel_list, 'location_list': location_list, 'story_list': stories,'location_list_1': location_list_1,'location_list_2': location_list_2,'location_list_3': location_list_3,'bigloclist': bigloclist, 'ind1c' :ind1c,'ind2c' :ind2c,'ind3c' :ind3c,'ind4c' :ind4c, 'networkc' : nsc})
+    return render_to_response('goonj/all_stories.html',{'topic_channel_list' : topic_channel_list, 'location_list': location_list, 'story_list': stories,'location_list_1': location_list_1,'location_list_2': location_list_2,'location_list_3': location_list_3,'bigloclist': bigloclist, 'ind1c' :ind1c,'ind2c' :ind2c,'ind3c' :ind3c,'ind4c' :ind4c, 'networkc' : nsc, 'entries' : entries}) 
 
 def all_issues(request):
     topic_channel_list = TopicChannel.objects.all()
+    entries = []
+    ctr = 1
+    while ctr < 9:
+        cult2 = []
+        cult = StoryTcRelation.objects.filter(topic_channel_id = ctr)
+        for c in cult:
+            if c.story.date.date() == now.date():
+                cult2.append(c)
+        cult = len(cult2)
+        entries.append(cult)
+        ctr = ctr + 1
+    entries = zip(topic_channel_list,entries)
     #location_list = Location.objects.all()
     location_list = Loc_district.objects.exclude(name='Not Known').order_by('name')
     location_list_1 = location_list[0:8]
@@ -1076,7 +1312,7 @@ def all_issues(request):
         ind3c = ClickCount.objects.get(adv_type_id = independent[2].id)
     if length > 3:
         ind4c = ClickCount.objects.get(adv_type_id = independent[3].id)
-    return render_to_response('goonj/all_issues.html',{'topic_channel_list' : topic_channel_list, 'location_list': location_list, 'issue_list': issue_list,'location_list_1': location_list_1,'location_list_2': location_list_2,'location_list_3': location_list_3,'bigloclist': bigloclist, 'ind1c' :ind1c,'ind2c' :ind2c,'ind3c' :ind3c,'ind4c' :ind4c, 'networkc' : nsc})
+    return render_to_response('goonj/all_issues.html',{'topic_channel_list' : topic_channel_list, 'location_list': location_list, 'issue_list': issue_list,'location_list_1': location_list_1,'location_list_2': location_list_2,'location_list_3': location_list_3,'bigloclist': bigloclist, 'ind1c' :ind1c,'ind2c' :ind2c,'ind3c' :ind3c,'ind4c' :ind4c, 'networkc' : nsc, 'entries' : entries}) 
 
 
 @register.inclusion_tag('goonj/timelines.html', takes_context = True)
