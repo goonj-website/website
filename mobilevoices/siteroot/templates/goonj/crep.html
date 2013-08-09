@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<!--	Story Data
+		Title, metadata, transcript, video and images. 
+-->
+
+
+<div id="top10wrap">
+
+
+<h1>{{crep.cr_name}}</h1>
+
+<br /><br />
+
+<a href= "/media/{{ crep.cr_photo }}" > <img src="/media/{{ crep.cr_photo }}" height="250" width= "140"  /> </a>
+
+	
+	<ul>
+	{% if crep.cr_phone_number %}
+        	<li> <h3> Phone Number </h3> </li>
+
+			<li> &nbsp; &nbsp;{{crep.cr_phone_number}}</li>
+	{% endif %}
+
+	{% if crep.role %}
+
+            <li> <h3> Role </h3> </li>
+
+			<li> &nbsp; &nbsp;{{crep.role}}</li>
+	{% endif %}
+
+	{% if crep.cr_email %}
+
+            <li> <h3> E-mail ID </h3> </li>
+
+			<li> &nbsp; &nbsp;{{crep.cr_email}}</li>
+	{% endif %}
+
+	{% if crep.cr_location %}
+
+            <li> <h3> Location </h3> </li>
+
+			<li> &nbsp; &nbsp;{{crep.cr_location}}</li>
+	{% endif %}
+            
+
+        </ul>
+    
+
+
+	<br /><br /><br />
+    
+   
+    
+
+</div>
+
+{% endblock %}

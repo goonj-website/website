@@ -1,0 +1,43 @@
+
+{% extends "base.html" %}
+
+
+{% block content %}
+
+
+
+<!--	Story Data
+		Title, metadata, transcript, video and images. 
+-->
+
+
+<div id="top10wrap" style = "width :880px ; margin-right:auto; margin-left :auto;">
+
+
+<h1>{{cp.cp_name}}</h1>
+
+	
+	<p>
+{{cp.cp_description}}
+
+	</p>
+{% if cp.cp_email %}    
+	<p>
+
+	Email at :{{cp.cp_email}}
+	</p>
+{% endif %}
+
+{% if cp.cp_website %}
+    <p>Visit their site : {{cp.cp_website}}</p>
+{% endif %}
+
+{% if cp.cp_phone_number %}
+	<p>Or you could also dial up : {{cp.cp_phone_number}}</p>
+{% endif %}   
+    
+
+</div>
+
+
+{% endblock %}

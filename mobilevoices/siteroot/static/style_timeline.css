@@ -1,0 +1,242 @@
+@import url('demo.css');
+
+.timeline {
+	position: relative;
+	list-style-type: none;
+	padding: 10px 0 0px 0;
+	font-family: Arial, sans-serif;
+#	float: left;
+}
+
+.timeline:before {
+	content: '';
+	position: absolute;
+	width: 5px;
+	height: 100%;
+	top: 0;
+	left: 15px;
+	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQIW2NkQID/QCYjiAsmoACrIFyWoEq4dgDNlAQGB2bkIAAAAABJRU5ErkJggg==);
+}
+
+.event {
+	position: relative;
+	margin-bottom: 30px;
+	padding-right: 1px;
+}
+
+
+/* Transparent Checkbox/Checkbox hack: leave the checkbox on top, hide it with opacity 0 */
+
+.event label,
+.event input[type="Checkbox"] {
+	width: 24px;
+	height: 24px;	
+	left: 7px;
+	top: 36px;
+	position: absolute;
+	display: block;
+}
+
+.event input[type="Checkbox"] {
+	opacity: 0;
+	z-index: 10;
+	cursor: pointer;
+}
+
+.event label:after {
+	font-family: 'fontawesome-selected';
+	content: '\e702';
+	background: #fff;
+	border-radius: 50%;
+	color: #000000;
+	font-size: 26px;
+	height: 100%;
+	width: 100%;
+	left: -2px;
+	top: -3px;
+	line-height: 24px;
+	position: absolute;
+	text-align: center;
+}
+
+.content-perspective {
+	margin-left: 70px;
+	position: relative;
+}
+
+.content-perspective:before {
+	content: '';
+	width: 37px;
+	left: -51px;
+	top: 45px;
+	position: absolute;
+	height: 1px;
+	z-index: -1;
+	background: #fff;
+}
+
+.content-inner {
+	position: relative;
+	padding: 7px;
+	color: #333;
+	border-left: 3px solid #000000;
+	border-bottom: 3px solid #000000;
+	background: #fff;
+}
+
+.content-inner h3 {
+	font-size: 17px;
+	padding: 2px 0 2px 0;
+	color: #000000;
+}
+
+.content-inner p {
+	font-size: 18px;
+	max-height: 0px;
+	overflow: hidden;
+	color: transparent;
+	color: rgba(0,0,0,0);
+	text-align: left;
+}
+
+.content-inner:before {
+	font-family: 'fontawesome-selected';
+	content: '\25c2';
+	font-weight: normal;
+	font-size: 54px;
+	line-height: 54px;
+	position: absolute;
+	width: 30px;
+	height: 30px;
+	color: #000000;
+	left: -22px;
+	top: 19px;
+}
+
+/* Transitions */
+
+.content-inner p {
+	-webkit-transition: max-height 0.5s linear, color 0.3s linear;
+	-moz-transition: max-height 0.5s linear, color 0.3s linear;
+	-o-transition: max-height 0.5s linear, color 0.3s linear;
+	-ms-transition: max-height 0.5s linear, color 0.3s linear;
+	transition: max-height 0.5s linear, color 0.3s linear;
+}
+
+/* Checked */
+
+.event input[type="Checkbox"]:checked + label:after {
+	content: '\2714';
+	color: #41838e;
+}
+
+.event input[type="Checkbox"]:checked ~ .content-perspective:before {
+	background: #41838e;
+}
+
+.event input[type="Checkbox"]:checked ~ .content-perspective .content-inner h3 {
+	color: #41838e;
+}
+
+.event input[type="Checkbox"]:checked ~ .content-perspective .content-inner {
+	border-color: #41838e;
+}
+
+.event input[type="Checkbox"]:checked ~ .content-perspective .content-inner p {
+	max-height: 500px; /* Add media queries */
+	color: rgba(0,0,0,0.6);
+	-webkit-transition-delay: 0s, 0.4s;
+	-moz-transition-delay: 0s, 0.4s;
+	-o-transition-delay: 0s, 0.4s;
+	-ms-transition-delay: 0s, 0.4s;
+	transition-delay: 0s, 0.4s;
+}
+
+.event input[type="Checkbox"]:checked ~ .content-perspective .content-inner:before {
+	color: #41838e;
+}
+
+.event input[type="Checkbox"]:checked ~ .thumb span {
+	color: #41838e;
+}
+
+.event input[type="Checkbox"]:checked ~ .thumb:before {
+	background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAICAYAAADA+m62AAAAPUlEQVQYV2NkQAOfUjX+882+wYgujiIAU4RNMVwhuiQ6H6wQl3XI4oy4FMHcCJPHcDS6J2A2EqUQpJhohQBbNyaHFmzEqgAAAABJRU5ErkJggg==);
+}
+
+.content-inner p,
+.thumb span,
+.event label {
+	-webkit-backface-visibility: hidden;
+}
+
+@media screen and (max-width: 850px) { 
+	.content-inner h3 {
+		font-size: 20px;
+	}
+
+	.content-inner p {
+		font-size: 14px;
+		text-align: justify;
+	}
+
+	.event input[type="Checkbox"]:checked ~ .content-perspective .content-inner p {
+		max-height: 500px; 
+	}
+}
+
+@media screen and (max-width: 540px) {
+	.timeline::before {
+		left: 50px;
+	}
+
+	.event { 
+		padding-right: 0px;
+		margin-bottom: 100px;
+	}
+
+
+	.event input[type="Checkbox"] {
+		width: 100px;
+		height: 100px;
+		left: 0px;
+		top: 0px;
+	}
+
+	.event label {
+		display: none;
+	}
+
+	.content-perspective {
+		margin-left: 0px; 
+		top: 80px;
+	}
+
+	.content-perspective:before {
+		height: 0px; 
+	}
+
+
+	.content-inner {
+		border-left: none;
+		border-top: 5px solid #000000;
+	}
+
+	.event input[type="Checkbox"]:checked ~ .content-perspective .content-inner {
+		border-color: #41838e;
+	}
+
+	.content-inner:before {
+		content: '\25b4';
+		left: 33px;
+		top: -32px;
+	}
+
+	.event input[type="Checkbox"]:checked ~ .content-perspective .content-inner p {
+		max-height: 300px; 
+	}
+}
+
+
+
+

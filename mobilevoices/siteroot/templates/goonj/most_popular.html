@@ -1,0 +1,45 @@
+
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<!--	Story Data
+		Title, metadata, transcript, video and images. 
+-->
+
+
+<div id="top10wrap" style="width:880px;margin-right:auto;margin-left:auto;">
+
+
+<h1>Top 10 Stories</h1>
+
+	<p>
+
+	These are the most viewed stories on Goonj.
+
+	</p>
+    <br />
+    
+
+	<div id="storylist">
+    
+    {% if top_story_list %}
+	<ul>
+	{% for story in top_story_list %}
+		<li><a href="/goonj/story/{{ story.story_id }}/">{{ story.title }}</a></li>
+	{% endfor %}
+	</ul>
+{% else %}
+	<p>No stories are available.</p>
+{% endif %} 
+    
+    
+    </div>
+
+
+
+</div>
+
+
+{% endblock %}
