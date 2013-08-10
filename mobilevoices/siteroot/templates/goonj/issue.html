@@ -253,16 +253,16 @@ function detectmob() {
                 <p>{{story.transcript}}</p>
 
 
-        {% if story.audio %}
+        {% if story.remote_audio_url %}
 
 
-<div class="xyz" id={{story.audio}}></div>
+<div class="xyz" id={{story.remote_audio_url}}></div>
 
 <!--<p>
 
  <object id="obj" type="application/x-shockwave-flash" data="/static/player.swf" width="300" height="40">
      <param name="movie" value="/static/player.swf" />
-     <param name="FlashVars" value="mp3=/goonj/goonjmedia/{{ story.audio }}" />
+     <param name="FlashVars" value="mp3={{ story.remote_audio_url }}" />
 </object>
 
 </p>   -->
@@ -289,7 +289,7 @@ if(a)
 	//elem.html('s1');
 	//alert(elem.innerHTML);
 	//var elem=document.createElement("audio");
-	//elem.src="/media/{{ story.audio }}";
+	//elem.src="{{ story.remote_audio_url }}";
 	//document.body.appendChild(elem);
 }
 else
@@ -318,14 +318,14 @@ else
 
 <!--<div id="test">
          <audio controls="controls">
-                        <source src="/media/{{ story.audio }}" type="audio/ogg" />
-                        <source src="/media/{{ story.audio }}" type="audio/mpeg" />
+                        <source src="{{ story.remote_audio_url }}" type="audio/ogg" />
+                        <source src="{{ story.remote_audio_url }}" type="audio/mpeg" />
                         Your browser does not support the audio element.
                 </audio>
 </div> -->
 <!--
 <p>
-<embed type="application/x-mplayer2" autostart="false" src="/goonjmedia/{{ story.audio }}" height="40" width="300" >
+<embed type="application/x-mplayer2" autostart="false" src="{{ story.remote_audio_url }}" height="40" width="300" >
 </p>
 -->
 <!--
@@ -333,7 +333,7 @@ else
 
 <object type="application/x-shockwave-flash" data="/static/player.swf" width="300" height="40">
      <param name="movie" value="/static/player.swf" />
-     <param name="FlashVars" value="mp3=/goonj/goonjmedia/{{ story.audio }}" />
+     <param name="FlashVars" value="mp3={{ story.remote_audio_url }}" />
 </object>
 
 </p>

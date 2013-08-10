@@ -29,7 +29,7 @@
     </p>
 
 
-{% if story.audio %}
+{% if story.remote_audio_url %}
 <!--
     <p>
     <audio controls="controls">
@@ -74,7 +74,7 @@ pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0">
 
 <object type="application/x-shockwave-flash" data="/static/player.swf" width="300" height="40">
      <param name="movie" value="/static/player.swf" />
-     <param name="FlashVars" value="mp3=/goonj/goonjmedia/{{ story.audio }}" />
+     <param name="FlashVars" value="mp3={{story.remote_audio_url}}" />
 </object>
 
 </p>
