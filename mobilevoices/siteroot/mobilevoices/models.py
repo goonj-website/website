@@ -104,7 +104,11 @@ class Story(models.Model):
     tags = models.CharField(max_length=1000, blank=True, null=True)
     title = models.CharField(max_length=1000)
     transcript = models.CharField(max_length=10000, blank=True, null = True)
+    is_comment   = models.BooleanField()
+    is_src_caller= models.BooleanField()
+    location_text = models.CharField(max_length = 64, null = True)
     audio = models.FileField(upload_to = "audio", blank=True, null = True)
+    remote_audio_url = models.CharField(max_length=128)
     photo_id = models.ManyToManyField(Photo,through='StoryPhotoRelation')
     #photo = models.FileField(upload_to = "images", blank=True, null = True)     list needed
     video = models.FileField(upload_to = "video", blank=True, null = True)
