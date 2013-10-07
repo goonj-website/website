@@ -914,8 +914,8 @@ def story(request, story_id):
         location_list_2 = location_list[8:16]
         location_list_3 = location_list[16:]
         bigloclist = [{'loc1': t[0], 'loc2': t[1], 'loc3':t[2], 'ctr1': t[3], 'ctr2': t[4], 'ctr3': t[5]} for t in zip(location_list_1, location_list_2, location_list_3,l1,l2,l3)]
-        loc = s.location.district
-        return render_to_response('goonj/story.html', {'channels' : imp,'story' : s, 'loc': loc, 'crep' : s.community_rep.all(), 'now': now,'photoList': s.photo_id.all(),'topic_channel_list' : topic_channel_list, 'location_list': location_list,'location_list_1': location_list_1,'location_list_2': location_list_2,'location_list_3': location_list_3,'bigloclist': bigloclist,'ind1c' :ind1c,'ind2c' :ind2c,'ind3c' :ind3c,'ind4c' :ind4c, 'networkc' : nsc, 'entries' : entries, 'lentry' : lentries}) 
+        
+        return render_to_response('goonj/story.html', {'channels' : imp,'story' : s, 'crep' : s.community_rep.all(), 'now': now,'photoList': s.photo_id.all(),'topic_channel_list' : topic_channel_list, 'location_list': location_list,'location_list_1': location_list_1,'location_list_2': location_list_2,'location_list_3': location_list_3,'bigloclist': bigloclist,'ind1c' :ind1c,'ind2c' :ind2c,'ind3c' :ind3c,'ind4c' :ind4c, 'networkc' : nsc, 'entries' : entries, 'lentry' : lentries}) 
 
 def issue(request, issue_id):
     try:
@@ -986,7 +986,7 @@ def issue(request, issue_id):
 
 def location(request, location_id):
     try:
-        l = Location.objects.get(pk=location_id)
+        l = Loc_district.objects.get(pk=location_id)
     except Location.DoesNotExist:
         raise Http404
     else:

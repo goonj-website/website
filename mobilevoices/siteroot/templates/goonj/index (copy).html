@@ -13,7 +13,8 @@
 <div id="topnews" style="width:880px;margin-right:auto;margin-left:auto;">
 
 	<h1><a href="/goonj/story/{{ ts.story_id }}/">{{ ts.title }}</a></h1>
-<h5> <a href="/goonj/location/{{ locTS.location_id }}/">{{locTS.district}}</a> On {{ts.date}}</h5>
+<h5> <a href="/goonj/location/{{ ts.location.district.id}}/">{{ts.location.district.name}}</a> On {{ts.date}}</h5>
+
 
 <!--
 {% for c in crepTS %}
@@ -77,7 +78,7 @@
 
 
 <h1> <a href="/goonj/story/{{ l9.story_id }}/">{{ l9.title }}</a></h1>
-<h5> <a href="/goonj/location/{{ loc9.location_id }}/">{{loc9.district}}</a> On {{l9.date}}</h5>
+<h5> <a href="/goonj/location/{{ l9.location.district.id}}/">{{l9.location.district.name}}</a> On {{l9.date}}</h5>
 
 
 <!--
@@ -118,7 +119,7 @@
 
 
 <h1><a href="/goonj/story/{{ l10.story_id }}/">{{ l10.title }}</a></h1>
-<h5> <a href="/goonj/location/{{ loc10.location_id }}/">{{loc10.district}}</a> On {{l10.date}}</h5>
+<h5> <a href="/goonj/location/{{ l10.location.district.id}}/">{{l10.location.district.name}}</a> On {{l10.date}}</h5>
 
 
 <!--
@@ -166,7 +167,8 @@
 
 
 <h1><a href="/goonj/story/{{ l11.story_id }}/">{{ l11.title }}</a></h1>
-<h5> <a href="/goonj/location/{{ loc9.location_id }}/">{{loc9.district}}</a> On {{l11.date}}</h5>
+<h5> <a href="/goonj/location/{{ l11.location.district.id}}/">{{l11.location.district.name}}</a> On {{l11.date}}</h5>
+
 
 
 <!--
@@ -221,7 +223,8 @@ Leftblock zone over
 <div id="content" class="rightblock">
 
 <h1><a href="/goonj/story/{{ l0.story_id }}/">{{ l0.title }}</a></h1>
-<h5> <a href="/goonj/location/{{ loc0.location_id }}/">{{loc0.district}}</a> On {{l0.date}}</h5>
+<h5> <a href="/goonj/location/{{ l0.location.district.id}}/">{{l0.location.district.name}}</a> On {{l0.date}}</h5>
+
 
 
 <!--
@@ -271,7 +274,9 @@ Leftblock zone over
 
 
 <h1><a href="/goonj/story/{{ l1.story_id }}/">{{ l1.title }}</a></h1>
-<h5> <a href="/goonj/location/{{ loc1.location_id }}/">{{loc1.district}}</a> On {{l1.date}}</h5>
+<h5> <a href="/goonj/location/{{ l1.location.district.id}}/">{{l1.location.district.name}}</a> On {{l1.date}}</h5>
+
+
    <!--     {% for c in crep1 %}	
 		<h6>Posted by <a href="/goonj/community_rep/{{ c.community_rep_id }}/">{{c}}</a> on {{l1.date}} from <a href="/goonj/location/{{ loc1.location_id }}/">{{loc1.district}}</a>.</h6>
             
@@ -318,7 +323,9 @@ Leftblock zone over
 
 
 <h1><a href="/goonj/story/{{ l2.story_id }}/">{{ l2.title }}</a></h1>
-<h5> <a href="/goonj/location/{{ loc2.location_id }}/">{{loc2.district}}</a> On {{l2.date}}</h5>
+<h5> <a href="/goonj/location/{{ l2.location.district.id}}/">{{l2.location.district.name}}</a> On {{l2.date}}</h5>
+
+
    <!--     {% for c in crep2 %}	
 		<h6>Posted by <a href="/goonj/community_rep/{{ c.community_rep_id }}/">{{c}}</a> on {{l2.date}} from <a href="/goonj/location/{{ loc2.location_id }}/">{{loc2.district}}</a>.</h6>
             
@@ -376,7 +383,8 @@ Leftblock zone over
 <div id="content" class="leftblock">
 
 <h1><a href="/goonj/story/{{ l3.story_id }}/">{{ l3.title }}</a></h1>
-<h5> <a href="/goonj/location/{{ loc3.location_id }}/">{{loc3.district}}</a> On {{l3.date}}</h5>
+<h5> <a href="/goonj/location/{{ l3.location.district.id}}/">{{l3.location.district.name}}</a> On {{l3.date}}</h5>
+
   <!--      {% for c in crep3 %}	
 		<h6>Posted by <a href="/goonj/community_rep/{{ c.community_rep_id }}/">{{c}}</a> on {{l3.date}} from <a href="/goonj/location/{{ loc3.location_id }}/">{{loc3.district}}</a>.</h6>
             
@@ -428,7 +436,8 @@ Leftblock zone over
 
 
 <h1><a href="/goonj/story/{{ l5.story_id }}/">{{ l5.title }}</a></h1>
-<h5> <a href="/goonj/location/{{ loc5.location_id }}/">{{loc5.district}}</a> On {{l5.date}}</h5>
+<h5> <a href="/goonj/location/{{ l5.location.district.id}}/">{{l5.location.district.name}}</a> On {{l5.date}}</h5>
+
         {% for c in crep5 %}	
 		<h6>Posted by <a href="/goonj/community_rep/{{ c.community_rep_id }}/">{{c}}</a> on {{l5.date}} from <a href="/goonj/location/{{ loc5.location_id }}/">{{loc5.district}}</a>.</h6>
             
@@ -492,7 +501,8 @@ Leftblock zone over
 
 
 <h1><a href="/goonj/story/{{ l4.story_id }}/">{{ l4.title }}</a></h1>
-<h5> <a href="/goonj/location/{{ loc4.location_id }}/">{{loc4.district}}</a> On {{l4.date}}</h5>
+<h5> <a href="/goonj/location/{{ l4.location.district.id}}/">{{l4.location.district.name}}</a> On {{l4.date}}</h5>
+
 <!--        {% for c in crep4 %}	
 		<h6>Posted by <a href="/goonj/community_rep/{{ c.community_rep_id }}/">{{c}}</a> on {{l4.date}} from <a href="/goonj/location/{{ loc4.location_id }}/">{{loc4.district}}</a>.</h6>
             
@@ -544,7 +554,8 @@ Leftblock zone over
 
 
 <h1><a href="/goonj/story/{{ l6.story_id }}/">{{ l6.title }}</a></h1>
-<h5> <a href="/goonj/location/{{ loc6.location_id }}/">{{loc6.district}}</a> On {{l6.date}}</h5>
+<h5> <a href="/goonj/location/{{ l6.location.district.id}}/">{{l6.location.district.name}}</a> On {{l6.date}}</h5>
+
  <!--       {% for c in crep6 %}	
 		<h6>Posted by <a href="/goonj/community_rep/{{ c.community_rep_id }}/">{{c}}</a> on {{l6.date}} from <a href="/goonj/location/{{ loc6.location_id }}/">{{loc6.district}}</a>.</h6>
             
@@ -600,7 +611,8 @@ Leftblock zone over
 
 
 <h1><a href="/goonj/story/{{ l7.story_id }}/">{{ l7.title }}</a></h1>
-<h5> <a href="/goonj/location/{{ loc7.location_id }}/">{{loc7.district}}</a> On {{l7.date}}</h5>
+<h5> <a href="/goonj/location/{{ l7.location.district.id}}/">{{l7.location.district.name}}</a> On {{l7.date}}</h5>
+
 <!--        {% for c in crep7 %}	
 		<h6>Posted by <a href="/goonj/community_rep/{{ c.community_rep_id }}/">{{c}}</a> on {{l7.date}} from <a href="/goonj/location/{{ loc7.location_id }}/">{{loc7.district}}</a>.</h6>
             
@@ -652,7 +664,8 @@ Leftblock zone over
 
 
 <h1><a href="/goonj/story/{{ l8.story_id }}/">{{ l8.title }}</a></h1>
-<h5> <a href="/goonj/location/{{ loc8.location_id }}/">{{loc8.district}}</a> On {{l8.date}}</h5>
+<h5> <a href="/goonj/location/{{ l8.location.district.id}}/">{{l8.location.district.name}}</a> On {{l8.date}}</h5>
+
 <!--
         {% for c in crep8 %}	
 		<h6>Posted by <a href="/goonj/community_rep/{{ c.community_rep_id }}/">{{c}}</a> on {{l8.date}} from <a href="/goonj/location/{{ loc8.location_id }}/">{{loc8.district}}</a>.</h6>
@@ -728,7 +741,6 @@ Leftblock zone over
 -->
 <!--	Regional Block ends   -->
 
-<a href="/goonj/" > <img src="/static/line.jpg"  width = "880px"/> </a>
-
+<a href="/goonj/" > <img src="/static/line.jpg"  width = "1080px"/> </a>
 
 {% endblock %}
